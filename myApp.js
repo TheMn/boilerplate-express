@@ -1,6 +1,12 @@
 let express = require("express");
 let app = express();
 
+function m_ware(req, res, next) {
+  console.log(req.method, req.path, "-", req.ip);
+  next();
+}
+app.use(m_ware);
+
 let ASSETS_FOLDER_PATH = __dirname + "/public";
 app.use("/public", express.static(ASSETS_FOLDER_PATH));
 
